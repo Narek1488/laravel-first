@@ -21,8 +21,8 @@
             </ul>
           </div>
           <div class="featured__item__text">
-            <h6><a href="#">Crab Pool Security</a></h6>
-            <h5>{{ $product-> price }}$</h5>
+            <h6><a href="#">{{ $product->name }}</a></h6>
+            <h5>{{ $product->price }}$</h5>
           </div>
         </div>
         </a>

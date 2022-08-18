@@ -8,18 +8,19 @@ use App\Models\Category;
 use App\Models\Product;
 
 
+
 use Illuminate\Support\Arr;
 
 class DashboardController extends Controller
 {
-     /**
+    /**
      * Create a new controller instance.
      *
      * @return void
      */
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -28,22 +29,37 @@ class DashboardController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {   
+    {
 
         $categoryes = Category::all();
-        
+
         $products = Product::all();
         $lastest = Product::latest()->limit(3)->get();
         return view('dashboard.home', compact(['categoryes', 'products', 'lastest']));
     }
-    public function show(Product $product){
+    public function show(Product $product)
+    {
         return view('dashboard.show', compact('product'));
     }
 
-    public function oneCategory(Category $category) {
+    public function oneCategory(Category $category)
+    {
         $products = $category->products->all();
         $categoryes = Category::all();
 
-        return view('dashboard.category', compact(['categoryes','products']));
+        return view('dashboard.category', compact(['categoryes', 'products']));
+    }
+
+    public function search(Request $request)
+    {
+        if ($request->name) {
+            $products = Product::where('name', 'LIKE', "%" . $request->name . "%")->get();
+            $categoryes = Category::all();
+
+            return view('dashboard.search',compact(['categoryes', 'products']));
+        } else {
+            return redirect('dashboard');
+
+        }
     }
 }

@@ -21,12 +21,12 @@
 
         <div class="hero__search">
           <div class="hero__search__form">
-            <form action="#">
+            <form action="{{ route('search') }}" method="get">
               <div class="hero__search__categories">
                 All Categories
                 <span class="arrow_carrot-down"></span>
               </div>
-              <input type="text" placeholder="What do yo u need?" />
+              <input type="text" name="name" placeholder="What do yo u need?" />
               <button type="submit" class="site-btn">SEARCH</button>
             </form>
           </div>

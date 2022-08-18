@@ -46,10 +46,11 @@ Route::get('/registration', [RegistrationController::class, 'index'])->name('reg
 Route::post('/registration', [RegistrationController::class, 'create'])->name('registration.create');
 
 
-
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard/search', [DashboardController::class, 'search'])->name('search');
 Route::get('/dashboard/{product}', [DashboardController::class, 'show'])->name('dashboard/show');
 Route::get('/dashboard/{category}/category', [DashboardController::class, 'oneCategory'])->name('dashboard/category');
+
 
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
